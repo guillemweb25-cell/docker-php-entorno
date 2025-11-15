@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ../proyecto-php:/var/www/html
+      - ../academia-php:/var/www/html
     depends_on:
       - db
 
@@ -23,7 +23,7 @@ services:
     ports:
       - "3306:3306"
 
-  phpmyadmin:
+  phpmyadmin_academia:
     image: phpmyadmin/phpmyadmin:latest
     container_name: phpmyadmin
     restart: always
@@ -43,7 +43,7 @@ services:
     depends_on:
       - web
     volumes:
-      - ../proyecto-php:/src
+      - ../academia-php:/src
     command: sh -c "npm install -g browser-sync && browser-sync start --proxy 'web:80' --files '/src/**/*.*' --no-ui --host 0.0.0.0 --port 3000"
     ports:
       - "3000:3000"
